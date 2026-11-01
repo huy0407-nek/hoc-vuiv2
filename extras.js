@@ -12,7 +12,7 @@ if(lv(D.xp)>old){confetti();toast('Lên cấp '+lv(D.xp)+'! 🎉')}else if(ok&&D
 function daily(){const d=new Date().toDateString();if(D.sk&&D.sk.d===d)return;const y=new Date(Date.now()-864e5).toDateString();D.sk={d,n:D.sk&&D.sk.d===y?D.sk.n+1:1};save()}
 function badge(){const x=D.xp||0,l=lv(x),a=50*(l-1)**2,b=50*l*l;
 return `<div class="row"><span class="badge">⭐ Cấp ${l}</span><span class="badge">🔥 ${D.sk?D.sk.n:1} ngày liên tiếp</span><span class="badge">✨ ${x} XP</span></div><div class="bar" style="margin-top:8px;max-width:260px"><i style="width:${100*(x-a)/(b-a)}%"></i></div>`}
-async function sample(){try{const j=await (await fetch('data/sample.json')).json();let n=0;
+async function sample(){try{const j=await (await fetch('sample.json')).json();let n=0;
 for(const k in j){if(!D.subs[k])D.subs[k]=[];j[k].forEach(([q,a])=>{D.subs[k].push({q,a,box:0,due:0});n++})}
 save();home();toast('Đã thêm '+n+' thẻ mẫu')}catch(e){alert('Không tải được bộ mẫu. Hãy mở web qua Render hoặc máy chủ, không mở trực tiếp file.')}}
 function backup(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(D)],{type:'application/json'}));a.download='hocvui-'+U+'.json';a.click()}
