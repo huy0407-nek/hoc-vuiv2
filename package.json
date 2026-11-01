@@ -1,0 +1,1 @@
+{"name":"hoc-vui","version":"2.0.0","private":true,"description":"Học Vui - do Lâm Huy tạo","scripts":{"start":"node server.js"},"engines":{"node":">=18"},"dependencies":{"bcryptjs":"^2.4.3","express":"^5.1.0","jsonwebtoken":"^9.0.2","mongodb":"^6.10.0"}}
