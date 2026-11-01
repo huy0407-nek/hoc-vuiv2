@@ -4,7 +4,7 @@ const SECRET=process.env.JWT_SECRET;
 if(!process.env.MONGODB_URI||!SECRET){console.error('Thiếu biến môi trường MONGODB_URI hoặc JWT_SECRET');process.exit(1)}
 const app=express();let users;
 app.use(express.json({limit:'5mb'}));
-app.use(express.static(path.join(__dirname,'public')));
+['index.html','style.css','app.js','extras.js','sample.json'].forEach(f=>app.get(f=='index.html'?['/','/index.html']:'/'+f,(q,r)=>r.sendFile(path.join(__dirname,f))));
 const sign=u=>jwt.sign({id:String(u._id)},SECRET,{expiresIn:'30d'});
 const auth=(q,r,n)=>{try{q.uid=new ObjectId(jwt.verify((q.headers.authorization||'').slice(7),SECRET).id);n()}catch(e){r.status(401).json({error:'Hãy đăng nhập lại'})}};
 const valid=(n,p)=>typeof n==='string'&&typeof p==='string'&&n.trim().length>=1&&n.trim().length<=20&&p.length>=6&&p.length<=72;
